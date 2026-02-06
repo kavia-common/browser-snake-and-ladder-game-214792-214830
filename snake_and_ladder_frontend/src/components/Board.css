@@ -1,0 +1,209 @@
+/* Retro board look: chunky borders + subtle scanlines */
+.board {
+  width: min(560px, 92vw);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  border: 4px solid var(--retro-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.06));
+  position: relative;
+  box-shadow: var(--shadow-hard);
+}
+
+.boardGrid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0px,
+    rgba(0, 0, 0, 0.08) 1px,
+    rgba(255, 255, 255, 0) 3px,
+    rgba(255, 255, 255, 0) 6px
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+.cell {
+  aspect-ratio: 1 / 1;
+  border-right: 2px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0));
+}
+
+.cellAlt {
+  background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0));
+}
+
+.cellStart {
+  outline: 2px solid rgba(34, 197, 94, 0.75);
+  outline-offset: -2px;
+}
+
+.cellFinish {
+  outline: 2px solid rgba(250, 204, 21, 0.85);
+  outline-offset: -2px;
+}
+
+.cellJump {
+  box-shadow: inset 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.cellHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.cellNumber {
+  opacity: 0.9;
+}
+
+.cellBadge {
+  font-weight: 800;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+}
+
+.cellBadgeLadder {
+  background: rgba(34, 197, 94, 0.9);
+  color: #071a0f;
+}
+
+.cellBadgeSnake {
+  background: rgba(239, 68, 68, 0.92);
+  color: #210707;
+}
+
+.cellTokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 22px;
+}
+
+.token {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  user-select: none;
+}
+
+.tokenP0 {
+  background: #60a5fa;
+  color: #041225;
+}
+.tokenP1 {
+  background: #34d399;
+  color: #05170f;
+}
+.tokenP2 {
+  background: #fbbf24;
+  color: #201604;
+}
+.tokenP3 {
+  background: #f472b6;
+  color: #240611;
+}
+
+.tokenActive {
+  outline: 2px dashed rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.tokenWinner {
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.9), 0 0 20px rgba(250, 204, 21, 0.35);
+}
+
+.cellFooter {
+  display: flex;
+  justify-content: flex-end;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+.jumpHintLadder {
+  color: rgba(34, 197, 94, 0.95);
+}
+
+.jumpHintSnake {
+  color: rgba(239, 68, 68, 0.95);
+}
+
+.boardLegend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 3px solid var(--retro-border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-hard);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+.legendChip {
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  border: 2px solid rgba(0, 0, 0, 0.45);
+}
+
+.legendChipLadder {
+  background: rgba(34, 197, 94, 0.9);
+  color: #071a0f;
+}
+
+.legendChipSnake {
+  background: rgba(239, 68, 68, 0.92);
+  color: #210707;
+}
+
+.legendChipFinish {
+  background: rgba(250, 204, 21, 0.9);
+  color: #231804;
+}
