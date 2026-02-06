@@ -1,0 +1,4 @@
+{
+    "command": "npm install",
+    "working_directory": "/home/kavia/workspace/code-generation/browser-snake-and-ladder-game-214792-214830/snake_and_ladder_frontend"
+}
